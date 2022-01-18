@@ -10,9 +10,11 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Categories />
-      <CoinList />
-      <Wallet />
+      <Routes>
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/coin_list" element={<CoinList />} />
+        <Route path="/wallet" element={<Wallet />} />
+      </Routes>      
     </Router>
   );
 }
