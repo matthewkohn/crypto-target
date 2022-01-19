@@ -2,21 +2,24 @@ import React, { useEffect, useState } from 'react'
 import CategoryCard from './CategoryCard'
 
 const Categories = () => {
-  const [categories, setCategories] = useState({});
+  const [categories, setCategories] = useState([]);
+  // const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     fetch('https://api.coingecko.com/api/v3/coins/categories')
-      .then(r => r.json())
+      .then((res) => res.json())
       .then(dataArr => {
-        const filteredArr = dataArr.filter((data) => data.content ? data : null)
+        const filteredArr = dataArr.filter((data) => data.content ? data : false)
         setCategories(filteredArr);
-        // console.log(filteredArr)
+        // setIsLoaded(true);
       })
   }, [])
 
   console.log(categories)
-  const categoryList = categories.map((category) => (
-    <CategoryCard key={category.id} category={category} />
+  // console.log(typeof categories)
+
+  const categoryList = categories.map((cat) => (
+    <CategoryCard key={cat.id} category={cat} />
   ))
 
   return (
@@ -25,6 +28,7 @@ const Categories = () => {
       <hr />
       <ul>
         {categoryList}
+        {/* {isLoaded ? categoryList : <h2>Loading...</h2>} */}
       </ul>
       <hr />
     </div>
