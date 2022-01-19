@@ -1,10 +1,17 @@
 import React from 'react'
 
-const CategoryCard = () => {
+const CategoryCard = ({category}) => {
+  // const top3CoinsArr = category.top_3_coins;
+  // console.log(top3CoinsArr)
+  // const imageList = top3CoinsArr.map(url => (
+  //   <img key={category.id} src={url} />
+  // ))
+
   return (
-    <div>
-      CategoryCard Component
-    </div>
+    <li>
+      <h3>{category.name}</h3>
+      {category.content}
+    </li>
   )
 }
 
