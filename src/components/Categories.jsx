@@ -3,7 +3,7 @@ import CategoryCard from './CategoryCard'
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  // const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     fetch('https://api.coingecko.com/api/v3/coins/categories')
@@ -11,12 +11,9 @@ const Categories = () => {
       .then(dataArr => {
         const filteredArr = dataArr.filter((data) => data.content ? data : false)
         setCategories(filteredArr);
-        // setIsLoaded(true);
+        setIsLoaded(true);
       })
   }, [])
-
-  console.log(categories)
-  // console.log(typeof categories)
 
   const categoryList = categories.map((cat) => (
     <CategoryCard key={cat.id} category={cat} />
@@ -28,7 +25,7 @@ const Categories = () => {
       <hr />
       <ul>
         {categoryList}
-        {/* {isLoaded ? categoryList : <h2>Loading...</h2>} */}
+        {isLoaded ? categoryList : <h2>Loading...</h2>}
       </ul>
       <hr />
     </div>
